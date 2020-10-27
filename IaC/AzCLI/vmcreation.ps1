@@ -35,7 +35,7 @@ param(
     $adminLogin,
 
     [Parameter(Mandatory = $True)]  
-    [securestring]
+    [string]
     $adminPassword
 )
 
