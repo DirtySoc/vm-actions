@@ -17,7 +17,7 @@ jobs:
 
       - name: look for ps1 file
         run: |
-          ls '${{ env.OUTPUT_PATH }}\IaC\AzCLI'
+          ls '${{ env.OUTPUT_PATH }}\IaC\AzPS'
       - name: provision virtual machine in azure
         env:
           RESOURCE_GROUP: rg-githubdeploy
