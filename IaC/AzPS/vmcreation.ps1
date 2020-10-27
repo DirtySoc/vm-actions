@@ -79,8 +79,7 @@ Write-Output ""
 # Create a VM in the resource group
 Write-Output "Creating VM..."
 try {
-    $secureAdminPassword = ConvertTo-SecureString -String $adminPassword -AsPlainText -Force
-    $cred = New-Object System.Management.Automation.PSCredential ($adminLogin, $secureAdminPassword)
+    $cred = New-Object System.Management.Automation.PSCredential ($adminLogin, $adminPassword)
     New-AzVM `
         -ResourceGroupName $resourceGroupName `
         -Name $serverName `
