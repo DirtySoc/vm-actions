@@ -44,7 +44,8 @@ param(
 #
 Write-Output "Logging in to Azure with a service principal..."
 
-$pscredential = New-Object -TypeName System.Management.Automation.PSCredential($servicePrincipal, $servicePrincipalSecret)
+$cred = ConvertTo-SecureString -String $servicePrincipalSecret -AsPlainText -Force
+$pscredential = New-Object -TypeName System.Management.Automation.PSCredential($servicePrincipal, $cred)
 Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $servicePrincipalTenantId
 
 Write-Output "Done"
@@ -79,7 +80,8 @@ Write-Output ""
 # Create a VM in the resource group
 Write-Output "Creating VM..."
 try {
-    $cred = New-Object System.Management.Automation.PSCredential ($adminLogin, $adminPassword)
+    $cred = ConvertTo-SecureString -String $servicePrincipalSecret -AsPlainText -Force
+    $cred = New-Object System.Management.Automation.PSCredential ($adminLogin, $cred)
     New-AzVM `
         -ResourceGroupName $resourceGroupName `
         -Name $serverName `
